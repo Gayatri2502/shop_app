@@ -121,7 +121,9 @@ class ProfileScreen extends StatelessWidget {
                             Text("Mahii ", style: montserrat),
                             Text("8956784586", style: montserrat),
                             const SizedBox(height: 45),
-                            Text("Flat no-1, \nShivani Plaza,\nBalaji Nagar - Sangli ", style: montserrat),
+                            Text(
+                                "Flat no-1, \nShivani Plaza,\nBalaji Nagar - Sangli ",
+                                style: montserrat),
                             Text("0223-4156-8956", style: montserrat)
                           ],
                         )

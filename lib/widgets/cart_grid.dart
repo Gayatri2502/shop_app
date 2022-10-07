@@ -1,27 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app/providers/server_end_product_view.dart';
+
 import '../providers/cart_provider.dart';
 
 class CartItem extends StatelessWidget {
-  String id;
-  double price;
-  String name;
+  Product product;
+
   int quantity;
-  String image;
+  Function() onDismissed;
 
   CartItem(
-    this.id,
-    this.price,
-    this.name,
+    this.product,
     this.quantity,
-    this.image, {
+    this.onDismissed, {
     Key? key,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: ValueKey(id),
+      key: ValueKey(product.Product_Id),
       background: Container(
           color: Colors.redAccent.shade700,
           child: Icon(
@@ -37,27 +36,11 @@ class CartItem extends StatelessWidget {
           )),
       direction: DismissDirection.endToStart,
       confirmDismiss: (direction) async {
-        showDialog(
-            context: context,
-            builder: (ctx) => AlertDialog(
-                  title: Text("Are you Sure ? "),
-                  content:
-                      Text('Do you Want to remove the item from the cart ? '),
-                  actions: <Widget>[
-                    ElevatedButton(
-                      child: Text('No'),
-                      onPressed: () {
-                        Navigator.of(ctx).pop(false);
-                      },
-                    ),
-                    ElevatedButton(onPressed: () {
-                      Navigator.of(context).pop(true);
-                    }, child: Text('Yes'))
-                  ],
-                ));
+        onDismissed();
       },
       onDismissed: (direction) {
-        Provider.of<CartProvider>(context, listen: false).removeSingleItem(id);
+        Provider.of<CartProvider>(context, listen: false)
+            .removeSingleItem(product.Product_Id);
       },
       child: Card(
         margin: EdgeInsets.symmetric(
@@ -67,12 +50,10 @@ class CartItem extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(8),
           child: ListTile(
-            leading: CircleAvatar(
-                child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: FittedBox(child: Text('\$$image')),
-            )),
-            subtitle: Text('Total: \$${(price * quantity)}'),
+            leading:
+                CircleAvatar(backgroundImage: NetworkImage(product.image_url)),
+            title: Text(product.Product_name),
+            subtitle: Text('Total: \$${(product.Product_price * quantity)}'),
             trailing: Text('$quantity X'),
           ),
         ),

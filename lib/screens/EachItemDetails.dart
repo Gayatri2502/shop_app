@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:shop_app/providers/product_provider.dart';
 import 'package:shop_app/providers/server_end_product_view.dart';
-
-import '../providers/server_end_product_view.dart';
 
 class EachProductDetails extends StatelessWidget {
   final Product product;
+
   //EachProductDetails( this.product);
   const EachProductDetails({Key? key, required this.product}) : super(key: key);
 

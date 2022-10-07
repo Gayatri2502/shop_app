@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/providers/product_provider.dart';
-import 'package:shop_app/widgets/user_products_screen.dart';
-import 'package:shop_app/widgets/user_products_screen.dart';
+
 import '../providers/cart_provider.dart';
 import '../providers/server_end_product_view.dart';
-import '../screens/EachItemDetails.dart';
 import '../screens/loginpage.dart';
 
 void main() => runApp(MultiProvider(

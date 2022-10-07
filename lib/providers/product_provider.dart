@@ -73,7 +73,6 @@ class ProductProvider with ChangeNotifier {
     notifyListeners();
   }
 
-
   List<Product> get items {
     return _items;
   }
@@ -95,14 +94,14 @@ class ProductProvider with ChangeNotifier {
     }
   }
 
-  void toggleFavorite(int index){
-    Product newProduct =  Product(
+  void toggleFavorite(int index) {
+    Product newProduct = Product(
         Product_Id: _items[index].Product_Id,
         Product_name: _items[index].Product_name,
         Product_description: _items[index].Product_description,
         Product_price: _items[index].Product_price,
-        image_url:
-        _items[index].image_url, isFavorite: !_items[index].isFavorite);
+        image_url: _items[index].image_url,
+        isFavorite: !_items[index].isFavorite);
     _items.replaceRange(index, index + 1, [newProduct]);
     notifyListeners();
   }

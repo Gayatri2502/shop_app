@@ -4,7 +4,6 @@ import 'package:shop_app/providers/server_end_product_view.dart';
 import 'package:shop_app/screens/EachItemDetails.dart';
 
 import '../providers/cart_provider.dart';
-import '../providers/product_provider.dart';
 
 class ProductItems extends StatefulWidget {
   final Product product;
@@ -33,8 +32,7 @@ class _ProductItemsState extends State<ProductItems> {
         child: GridTile(
           child: GestureDetector(
             onTap: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (context) {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
                 return EachProductDetails(product: widget.product);
               }));
               // Navigator.of(context).push(MaterialPageRoute(builder: (context){

@@ -7,7 +7,6 @@ import 'package:shop_app/screens/order_screen.dart';
 import 'package:shop_app/screens/sideBar.dart';
 import 'package:shop_app/widgets/Product_grid.dart';
 
-import './sideBar.dart';
 import 'Profile_Page.dart';
 
 enum option {
@@ -25,7 +24,8 @@ class Frontend_View_ofproduct extends StatefulWidget {
 class _Frontend_View_ofproductState extends State<Frontend_View_ofproduct> {
   @override
   Widget build(BuildContext context) {
-    List<Product> shoppingCartItems = Provider.of<ProductProvider>(context).shoppingCartItems;
+    List<Product> shoppingCartItems =
+        Provider.of<ProductProvider>(context).shoppingCartItems;
 
     return Scaffold(
         drawer: NavBar(),
@@ -134,7 +134,6 @@ class _Frontend_View_ofproductState extends State<Frontend_View_ofproduct> {
                 Colors.brown,
               ],
             )),
-
             child: ProductGrid()));
   }
 }

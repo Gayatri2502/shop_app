@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
 import 'package:shop_app/providers/server_end_product_view.dart';
 import 'package:shop_app/widgets/cart_grid.dart';
-import '../widgets/cart_grid.dart';
+
 import '../providers/product_provider.dart';
 
 class OrderPage extends StatelessWidget {
@@ -33,7 +32,7 @@ class OrderPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: SizedBox(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height*0.91,
+          height: MediaQuery.of(context).size.height * 0.91,
           child: Column(
             children: <Widget>[
               // Expanded(
@@ -103,8 +102,6 @@ class OrderPage extends StatelessWidget {
                               fontWeight: FontWeight.w700,
                               color: Colors.lightBlue),
                         ),
-
-
                         const Text(
                           'Total Amount:',
                           style: TextStyle(color: Colors.white, fontSize: 20),
@@ -114,19 +111,49 @@ class OrderPage extends StatelessWidget {
                               '\$${mapItems.isNotEmpty ? mapItems.map((e) => e.Product_price).toList().reduce((value, element) => value + element) : '0.0'}'),
                           backgroundColor: Theme.of(context).primaryColor,
                         ),
-
                         Expanded(
-                            child: ListView.builder(
-                          itemBuilder: (ctx, i) => CartItem(
-                              mapItems.toList()[i].Product_Id,
-                              mapItems.toList()[i].Product_price,
-                              mapItems.toList()[i].Product_name,
-                              mapItems.toList()[i].Quantity,
-                              mapItems.toList()[i].image_url),
-
-                          itemCount: mapItems.length,
-                        )),
-
+                            child: StreamBuilder<List<Product>>(
+                                stream: Stream.periodic(
+                                    Duration(milliseconds: 1), (_) {
+                                  return mapItems;
+                                }),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return ListView.builder(
+                                      itemBuilder: (ctx, i) =>
+                                          CartItem(snapshot.data![i], 1, () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (ctx) => AlertDialog(
+                                                  title:
+                                                      Text("Are you Sure ? "),
+                                                  content: Text(
+                                                      'Do you Want to remove the item from the cart ? '),
+                                                  actions: <Widget>[
+                                                    ElevatedButton(
+                                                      child: Text('No'),
+                                                      onPressed: () {
+                                                        Navigator.of(context)
+                                                            .pop();
+                                                      },
+                                                    ),
+                                                    ElevatedButton(
+                                                        onPressed: () {
+                                                          mapItems.remove(
+                                                              mapItems
+                                                                  .toList()[i]);
+                                                          Navigator.of(context)
+                                                              .pop();
+                                                        },
+                                                        child: Text('Yes'))
+                                                  ],
+                                                ));
+                                      }),
+                                      itemCount: snapshot.data!.length,
+                                    );
+                                  }
+                                  return Container();
+                                })),
                         Center(
                           child: ElevatedButton(
                             style: ButtonStyle(

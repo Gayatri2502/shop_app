@@ -34,7 +34,10 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.person),
             title: Text('My Account'),
-            onTap: () {Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ProfileScreen()  )); },
+            onTap: () {
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => ProfileScreen()));
+            },
           ),
           ListTile(
             leading: Icon(Icons.share),
