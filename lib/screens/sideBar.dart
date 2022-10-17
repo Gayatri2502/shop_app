@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/screens/Profile_Page.dart';
+import 'package:shop_app/screens/edit_product_screen.dart';
 //import 'package:flutter_side_navbar/flutter_side_navbar.dart';
 
 class NavBar extends StatelessWidget {
@@ -73,8 +74,11 @@ class NavBar extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.description),
-            title: Text('Policies'),
-            onTap: () => null,
+            title: Text('Manage Products'),
+            onTap: () => Navigator.of(context)
+                .push(MaterialPageRoute(builder: (context) {
+              return EditProductScreen();
+            })),
           ),
           Divider(),
           ListTile(

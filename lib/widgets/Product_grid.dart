@@ -80,6 +80,7 @@ class ProductGrid extends StatelessWidget {
                   childAspectRatio: 2 / 3,
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
+                  
                 ),
               ));
   }

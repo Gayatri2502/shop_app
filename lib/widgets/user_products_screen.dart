@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:shop_app/screens/edit_product_screen.dart';
 
 class UserProductScreen extends StatefulWidget {
+  final String id;
   final String Product_name;
   final String imageUrl;
 
-  UserProductScreen(this.Product_name, this.imageUrl);
+  UserProductScreen(this.id, this.Product_name, this.imageUrl );
 
   @override
   State<UserProductScreen> createState() => _UserProductScreenState();
@@ -21,7 +23,11 @@ class _UserProductScreenState extends State<UserProductScreen> {
       trailing: Row(
         children: <Widget>[
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context)
+              { return EditProductScreen();}
+              ));
+            },
             icon: Icon(Icons.edit),
             color: Theme.of(context).primaryColor,
           ),
