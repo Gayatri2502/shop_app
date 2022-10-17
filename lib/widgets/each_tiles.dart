@@ -41,6 +41,7 @@ class _ProductItemsState extends State<ProductItems> {
             },
             child: Image.network(
               widget.product.image_url,
+              fit: BoxFit.cover,
             ),
           ),
           footer: GridTileBar(

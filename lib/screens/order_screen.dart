@@ -107,8 +107,25 @@ class OrderPage extends StatelessWidget {
                           style: TextStyle(color: Colors.white, fontSize: 20),
                         ),
                         Chip(
-                          label: Text(
-                              '\$${mapItems.isNotEmpty ? mapItems.map((e) => e.Product_price).toList().reduce((value, element) => value + element) : '0.0'}'),
+                          label: StreamBuilder<double>(
+                              stream: Stream.periodic(Duration(milliseconds: 1),
+                                  (_) {
+                                return mapItems.isNotEmpty
+                                    ? mapItems
+                                        .map((e) => e.Product_price)
+                                        .toList()
+                                        .reduce(
+                                            (value, element) => value + element)
+                                    : 0;
+                              }),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return Text(
+                                    '\$${snapshot.data!.toStringAsFixed(2)}',
+                                  );
+                                }
+                                return Container();
+                              }),
                           backgroundColor: Theme.of(context).primaryColor,
                         ),
                         Expanded(
@@ -139,9 +156,24 @@ class OrderPage extends StatelessWidget {
                                                     ),
                                                     ElevatedButton(
                                                         onPressed: () {
+                                                          Product
+                                                              removeableProduct =
+                                                              mapItems.firstWhere(
+                                                                  (element) =>
+                                                                      element
+                                                                          .Product_Id ==
+                                                                      snapshot
+                                                                          .data![
+                                                                              i]
+                                                                          .Product_Id);
                                                           mapItems.remove(
                                                               mapItems
                                                                   .toList()[i]);
+                                                          Provider.of<ProductProvider>(
+                                                                  context,
+                                                                  listen: false)
+                                                              .removeSingleProductFromCart(
+                                                                  removeableProduct);
                                                           Navigator.of(context)
                                                               .pop();
                                                         },

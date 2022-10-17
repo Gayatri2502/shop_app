@@ -36,8 +36,7 @@ class ProfileScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: 700,
+                  Expanded(
                     child: Stack(
                       children: [
                         ClipPath(
@@ -100,32 +99,36 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "User Account Name : \nContact Details : ",
-                              style: montserrat,
-                            ),
-                            const SizedBox(height: 45),
-                            Text(
-                              " Your Address: \nContact Us: ",
-                              style: montserrat,
-                            ),
-                          ],
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "User Account Name : \nContact Details : ",
+                                style: montserrat,
+                              ),
+                              const SizedBox(height: 45),
+                              Text(
+                                " Your Address: \nContact Us: ",
+                                style: montserrat,
+                              ),
+                            ],
+                          ),
                         ),
                         const SizedBox(width: 15),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text("Mahii ", style: montserrat),
-                            Text("8956784586", style: montserrat),
-                            const SizedBox(height: 45),
-                            Text(
-                                "Flat no-1, \nShivani Plaza,\nBalaji Nagar - Sangli ",
-                                style: montserrat),
-                            Text("0223-4156-8956", style: montserrat)
-                          ],
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text("Mahii ", style: montserrat),
+                              Text("8956784586", style: montserrat),
+                              const SizedBox(height: 45),
+                              Text(
+                                  "Flat no-1, \nShivani Plaza,\nBalaji Nagar - Sangli ",
+                                  style: montserrat),
+                              Text("0223-4156-8956", style: montserrat)
+                            ],
+                          ),
                         )
                       ],
                     ),

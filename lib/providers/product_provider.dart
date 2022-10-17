@@ -111,6 +111,11 @@ class ProductProvider with ChangeNotifier {
     shoppingCartItems.toSet().toList();
     notifyListeners();
   }
+
+  void removeSingleProductFromCart(Product product) {
+    shoppingCartItems.remove(product);
+    notifyListeners();
+  }
 }
 
 // if (showFavorites){
