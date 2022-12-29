@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/screens/Profile_Page.dart';
-import 'package:shop_app/screens/edit_product_screen.dart';
+import 'package:shop_app/screens/add_new_product_screen.dart';
 //import 'package:flutter_side_navbar/flutter_side_navbar.dart';
 
 class NavBar extends StatelessWidget {
@@ -79,7 +79,7 @@ class NavBar extends StatelessWidget {
             title: const Text('Manage Products'),
             onTap: () => Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) {
-              return const EditProductScreen();
+              return AddNewProductScreen();
             })),
           ),
           const Divider(),
