@@ -25,20 +25,17 @@ class Product {
       Product_Id: json['Product_Id'],
       Product_name: json['Product_name'],
       Product_description: json['Product_description'],
-      Product_price: json['Product_price'],
+      Product_price: double.parse(json['Product_price'].toString()),
       image_url: json['image_url'],
     );
   }
 
   //to JSON
   Map<String, dynamic> toJson() => {
-    'Product_Id': Product_Id,
-    'Product_name': Product_name,
-    'Product_description': Product_description,
-    'Product_price': Product_price,
-    'image_url': image_url,
-  };
-
-
-
+        'Product_Id': Product_Id,
+        'Product_name': Product_name,
+        'Product_description': Product_description,
+        'Product_price': Product_price,
+        'image_url': image_url,
+      };
 }

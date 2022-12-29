@@ -20,7 +20,7 @@ class ProductGrid extends StatelessWidget {
     return SizedBox(
         height: MediaQuery.of(context).size.height,
         child: StreamBuilder<DatabaseEvent>(
-            stream: FirebaseDatabase.instance.ref().child("Products").onValue,
+            stream: FirebaseDatabase.instance.ref().child("Product").onValue,
             builder: (context, snapshot) {
               List<Product> obj1 = snapshot.data!.snapshot.children
                   .map((e) => Product.fromJson(jsonDecode(jsonEncode(e.value))))
