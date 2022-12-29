@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/providers/server_end_product_view.dart';
-import 'package:shop_app/screens/EachItemDetails.dart';
 
 import '../providers/cart_provider.dart';
+import '../providers/server_end_product_view.dart';
+import '../screens/EachItemDetails.dart';
 
 class ProductItems extends StatefulWidget {
   final Product product;
@@ -12,9 +12,9 @@ class ProductItems extends StatefulWidget {
 
   const ProductItems(
       {Key? key,
-      required this.product,
-      required this.onShoppingCartButtonPressed,
-      required this.onFavoritePressed})
+        required this.product,
+        required this.onShoppingCartButtonPressed,
+        required this.onFavoritePressed})
       : super(key: key);
 
   @override
@@ -30,20 +30,6 @@ class _ProductItemsState extends State<ProductItems> {
     return ClipRRect(
         borderRadius: BorderRadius.circular(15),
         child: GridTile(
-          child: GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return EachProductDetails(product: widget.product);
-              }));
-              // Navigator.of(context).push(MaterialPageRoute(builder: (context){
-              //   return EachProductDetails("Product Name");
-              //}));
-            },
-            child: Image.network(
-              widget.product.image_url,
-              fit: BoxFit.cover,
-            ),
-          ),
           footer: GridTileBar(
               backgroundColor: Colors.black,
               //action : IconButton(onPressed: null, icon: Icon(Icons.account_circle_rounded));
@@ -80,6 +66,20 @@ class _ProductItemsState extends State<ProductItems> {
                 },
                 color: Colors.white,
               )),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+                return EachProductDetails(product: widget.product);
+              }));
+              // Navigator.of(context).push(MaterialPageRoute(builder: (context){
+              //   return EachProductDetails("Product Name");
+              //}));
+            },
+            child: Image.network(
+              widget.product.image_url,
+              fit: BoxFit.cover,
+            ),
+          ),
         ));
   }
 }

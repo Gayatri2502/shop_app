@@ -5,8 +5,8 @@ import 'package:shop_app/providers/product_provider.dart';
 import 'package:shop_app/providers/server_end_product_view.dart';
 import 'package:shop_app/screens/order_screen.dart';
 import 'package:shop_app/screens/sideBar.dart';
-import 'package:shop_app/widgets/Product_grid.dart';
 
+import '../widgets/product_grid.dart';
 import 'Profile_Page.dart';
 
 enum option {

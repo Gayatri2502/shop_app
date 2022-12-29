@@ -81,18 +81,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       body: Center(
         child: Container(
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            colors: [
-              Colors.black,
-              Colors.brown,
-              Colors.black54,
-              Colors.brown,
-              Colors.black,
-            ],
-          )),
+
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
           //color: Colors.teal,

@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 const darkColor = Color(0xFF49535C);
 
 class ProfileScreen extends StatelessWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    var montserrat = TextStyle(
+    var montserrat = const TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.w800,
     );
@@ -27,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Container(
-              constraints: BoxConstraints(maxWidth: 500),
+              constraints: const BoxConstraints(maxWidth: 500),
               decoration: BoxDecoration(
                 color: Colors.white30,
                 borderRadius: BorderRadius.circular(20),
@@ -43,7 +45,7 @@ class ProfileScreen extends StatelessWidget {
                           clipper: AvatarClipper(),
                           child: Container(
                             height: 150,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                               color: Colors.black,
                               borderRadius: BorderRadius.only(
                                 topRight: Radius.circular(20),
@@ -57,7 +59,7 @@ class ProfileScreen extends StatelessWidget {
                           top: 100,
                           child: Row(
                             children: [
-                              CircleAvatar(
+                              const CircleAvatar(
                                 radius: 50,
                                 backgroundImage: NetworkImage(
                                     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTTOkHm3_mPQ5PPRvGtU6Si7FJg8DVDtZ47rw&usqp=CAU"),
@@ -65,16 +67,16 @@ class ProfileScreen extends StatelessWidget {
                               const SizedBox(width: 20),
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
+                                children: const [
                                   Text(
                                     "My Account",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w800,
                                       fontSize: 38,
-                                      color: const Color(0xFFFFFFFF),
+                                      color: Color(0xFFFFFFFF),
                                     ),
                                   ),
-                                  const SizedBox(height: 8),
+                                  SizedBox(height: 8),
                                   Text(
                                     "|Gayatri Samal|",
                                     style: TextStyle(
@@ -83,7 +85,7 @@ class ProfileScreen extends StatelessWidget {
                                       color: Colors.black,
                                     ),
                                   ),
-                                  const SizedBox(height: 8)
+                                  SizedBox(height: 8)
                                 ],
                               )
                             ],
@@ -229,7 +231,7 @@ class AvatarClipper extends CustomClipper<Path> {
     return Path()
       ..lineTo(0, size.height)
       ..lineTo(8, size.height)
-      ..arcToPoint(Offset(114, size.height), radius: Radius.circular(1))
+      ..arcToPoint(Offset(114, size.height), radius: const Radius.circular(1))
       ..lineTo(size.width, size.height)
       ..lineTo(size.width, 0)
       ..close();

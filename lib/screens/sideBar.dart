@@ -4,14 +4,16 @@ import 'package:shop_app/screens/edit_product_screen.dart';
 //import 'package:flutter_side_navbar/flutter_side_navbar.dart';
 
 class NavBar extends StatelessWidget {
+  const NavBar({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text('Gayatri Samal'),
-            accountEmail: Text('8956784586'),
+            accountName: const Text('Gayatri Samal'),
+            accountEmail: const Text('8956784586'),
             currentAccountPicture: CircleAvatar(
               child: ClipOval(
                 child: Image.network(
@@ -22,39 +24,39 @@ class NavBar extends StatelessWidget {
                 ),
               ),
             ),
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.black,
               image: DecorationImage(fit: BoxFit.fill, image: NetworkImage('')),
             ),
           ),
           ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text('Favorites'),
+            leading: const Icon(Icons.favorite),
+            title: const Text('Favorites'),
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.person),
-            title: Text('My Account'),
+            leading: const Icon(Icons.person),
+            title: const Text('My Account'),
             onTap: () {
               Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => ProfileScreen()));
             },
           ),
           ListTile(
-            leading: Icon(Icons.share),
-            title: Text('Share'),
+            leading: const Icon(Icons.share),
+            title: const Text('Share'),
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text('Notifications'),
+            leading: const Icon(Icons.notifications),
+            title: const Text('Notifications'),
             onTap: () => null,
             trailing: ClipOval(
               child: Container(
                 color: Colors.red,
                 width: 20,
                 height: 20,
-                child: Center(
+                child: const Center(
                   child: Text(
                     '8',
                     style: TextStyle(
@@ -66,24 +68,24 @@ class NavBar extends StatelessWidget {
               ),
             ),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Settings'),
+            leading: const Icon(Icons.settings),
+            title: const Text('Settings'),
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.description),
-            title: Text('Manage Products'),
+            leading: const Icon(Icons.description),
+            title: const Text('Manage Products'),
             onTap: () => Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) {
-              return EditProductScreen();
+              return const EditProductScreen();
             })),
           ),
-          Divider(),
+          const Divider(),
           ListTile(
-            title: Text('LogOut'),
-            leading: Icon(Icons.exit_to_app),
+            title: const Text('LogOut'),
+            leading: const Icon(Icons.exit_to_app),
             onTap: () => null,
           ),
         ],

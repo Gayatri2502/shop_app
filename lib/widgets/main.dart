@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/providers/product_provider.dart';
@@ -6,13 +7,17 @@ import '../providers/cart_provider.dart';
 import '../providers/server_end_product_view.dart';
 import '../screens/loginpage.dart';
 
-void main() => runApp(MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => ProductProvider()),
-        ChangeNotifierProvider(create: (_) => CartProvider()),
-      ],
-      child: ShopApp(),
-    ));
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => ProductProvider()),
+      ChangeNotifierProvider(create: (_) => CartProvider()),
+    ],
+    child: const ShopApp(),
+  ));
+}
 
 class ShopApp extends StatefulWidget {
   const ShopApp({Key? key}) : super(key: key);
@@ -33,7 +38,7 @@ class _ShopAppState extends State {
           primaryColor: Colors.white30,
           primarySwatch: Colors.blue,
         ),
-        home: LoginPage(),
+        home: const LoginPage(),
         /*routes: {
           UserProductScreen.routeName: (ctx)=> UserProductScreen(Product_name, imageUrl),
         },*/

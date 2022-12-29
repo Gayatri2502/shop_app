@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:shop_app/providers/server_end_product_view.dart';
 
 import '../providers/cart_provider.dart';
+import '../providers/server_end_product_view.dart';
+
 
 class CartItem extends StatelessWidget {
   Product product;
@@ -11,11 +12,11 @@ class CartItem extends StatelessWidget {
   Function() onDismissed;
 
   CartItem(
-    this.product,
-    this.quantity,
-    this.onDismissed, {
-    Key? key,
-  }) : super(key: key);
+      this.product,
+      this.quantity,
+      this.onDismissed, {
+        Key? key,
+      }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,32 +24,33 @@ class CartItem extends StatelessWidget {
       key: ValueKey(product.Product_Id),
       background: Container(
           color: Colors.redAccent.shade700,
-          child: Icon(
+          alignment: Alignment.centerRight,
+          padding: const EdgeInsets.only(right: 20),
+          margin: const EdgeInsets.symmetric(
+            horizontal: 15,
+            vertical: 4,
+          ),
+          child: const Icon(
             Icons.delete,
             color: Colors.white,
             size: 40,
-          ),
-          alignment: Alignment.centerRight,
-          padding: EdgeInsets.only(right: 20),
-          margin: EdgeInsets.symmetric(
-            horizontal: 15,
-            vertical: 4,
           )),
       direction: DismissDirection.endToStart,
       confirmDismiss: (direction) async {
         onDismissed();
+        return null;
       },
       onDismissed: (direction) {
         Provider.of<CartProvider>(context, listen: false)
             .removeSingleItem(product.Product_Id);
       },
       child: Card(
-        margin: EdgeInsets.symmetric(
+        margin: const EdgeInsets.symmetric(
           horizontal: 10,
           vertical: 5,
         ),
         child: Padding(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           child: ListTile(
             leading:
                 CircleAvatar(backgroundImage: NetworkImage(product.image_url)),
