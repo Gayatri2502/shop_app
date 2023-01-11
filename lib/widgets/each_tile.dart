@@ -47,6 +47,7 @@ class _ProductItemsState extends State<ProductItems> {
                       return Container();
                     }),
                 onPressed: () {
+                  print("ON Favorite Pressed");
                   widget.onFavoritePressed();
                 },
                 color: Colors.red.shade900,

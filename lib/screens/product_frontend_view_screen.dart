@@ -192,6 +192,6 @@ class _Frontend_View_ofproductState extends State<Frontend_View_ofproduct> {
             //     Colors.black,
             //     Colors.brown,]
             // )),
-            child: ProductGrid(allItems: shoppingCartGridItems,)));
+            child: ProductGrid()));
   }
 }
