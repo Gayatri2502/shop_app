@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shop_app/screens/Profile_Page.dart';
-import 'package:shop_app/screens/add_new_product_screen.dart';
-//import 'package:flutter_side_navbar/flutter_side_navbar.dart';
+import 'package:shop_app/screens/manage_products.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({Key? key}) : super(key: key);
@@ -26,31 +25,31 @@ class NavBar extends StatelessWidget {
             ),
             decoration: const BoxDecoration(
               color: Colors.black,
-              image: DecorationImage(fit: BoxFit.fill, image: NetworkImage('')),
+              image: DecorationImage(fit: BoxFit.fill, image: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS0_2v3E3wLjjfGbJ0U7DtBU9OSHE9Hr0NBaQ&usqp=CAU')),
             ),
           ),
           ListTile(
             leading: const Icon(Icons.favorite),
             title: const Text('Favorites'),
-            onTap: () => null,
+            onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.person),
             title: const Text('My Account'),
             onTap: () {
               Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => ProfileScreen()));
+                  MaterialPageRoute(builder: (context) => const ProfileScreen()));
             },
           ),
           ListTile(
             leading: const Icon(Icons.share),
             title: const Text('Share'),
-            onTap: () => null,
+            onTap: () {},
           ),
           ListTile(
             leading: const Icon(Icons.notifications),
             title: const Text('Notifications'),
-            onTap: () => null,
+            onTap: (){},
             trailing: ClipOval(
               child: Container(
                 color: Colors.red,
@@ -72,21 +71,21 @@ class NavBar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.settings),
             title: const Text('Settings'),
-            onTap: () => null,
+            onTap: () => (){},
           ),
           ListTile(
             leading: const Icon(Icons.description),
             title: const Text('Manage Products'),
             onTap: () => Navigator.of(context)
                 .push(MaterialPageRoute(builder: (context) {
-              return AddNewProductScreen();
+              return   ManageProducts();
             })),
           ),
           const Divider(),
           ListTile(
             title: const Text('LogOut'),
             leading: const Icon(Icons.exit_to_app),
-            onTap: () => null,
+            onTap: (){},
           ),
         ],
       ),

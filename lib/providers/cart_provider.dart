@@ -1,46 +1,48 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-
+import 'package:shop_app/providers/server_end_product_view.dart';
 import '../widgets/cart_grid.dart';
 
 class Cart {
-  String id;
+  Product product;
   int quantity;
-  String name;
-  double price;
 
   Cart({
-    required this.id,
+    required this.product,
     required this.quantity,
-    required this.name,
-    required this.price,
   });
-}
-
-class CartProvider with ChangeNotifier {
-  Map<String, CartItem> Items = {};
-  final List<CartItem> _Identity = [];
-
-  List<CartItem> get Identity {
-    return _Identity;
+//from Json
+  factory Cart.fromJson(Map<String, dynamic> json) {
+    return Cart(
+        product: Product.fromJson(json['product']), quantity: json['quantity']);
   }
 
-  // void removeCartItem(String id) {
-  //   Items.remove(id);
-  //   notifyListeners();
-  // }
-
-  void removeSingleItem(String id) {
-    print("Items length: ${Items.length}");
-    if (!Items.containsKey(id)) {
-      return;
-    }
-    if (Items[id]!.quantity > 1) {
-      Items.update(id, (Identity) => CartItem(Identity.product, 1, () {}));
-    } else {
-      Items.remove(id);
-    }
-    print("Items length: ${Items.length}");
-    notifyListeners();
+//to Json
+  Map<String, dynamic> toJson() {
+    return {'product': product.toJson(), 'quantity': quantity};
   }
 }
+
+// class CartProvider with ChangeNotifier {
+//   Map<String, CartGridItem> Items = {};
+//   final List<CartGridItem> _Identity = [];
+//
+//   List<CartGridItem> get Identity {
+//     return _Identity;
+//   }
+//
+//   Future<void> removeSingleItem(String id) async {
+//     print("Items length: ${Items.length}");
+//     if (!Items.containsKey(id)) {
+//       return;
+//     }
+//     if (Items[id]!.quantity > 1) {
+//       Items.update(id, (Identity) => CartGridItem(Identity.product, 1, () {}));
+//     } else {
+//       Items.remove(id);
+//     }
+//     print("Items length: ${Items.length}");
+//     notifyListeners();
+//   }
+
+

@@ -1,27 +1,40 @@
+import 'dart:convert';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shop_app/providers/product_provider.dart';
 
-import '../providers/cart_provider.dart';
 import '../providers/server_end_product_view.dart';
 
-
-class CartItem extends StatelessWidget {
-  Product product;
-
-  int quantity;
+class CartGridItem extends StatefulWidget {
+  final Product product;
+  int Quantity;
   Function() onDismissed;
 
-  CartItem(
-      this.product,
-      this.quantity,
-      this.onDismissed, {
-        Key? key,
-      }) : super(key: key);
+
+  CartGridItem(
+    this.product,
+    this.Quantity,
+
+    this.onDismissed, {
+    Key? key,
+  }) : super(key: key);
+
+
+
+  @override
+  State<CartGridItem> createState() => _CartGridItemState();
+}
+
+class _CartGridItemState extends State<CartGridItem> {
+  @override
+  final DatabaseReference reff = FirebaseDatabase.instance.ref();
+
 
   @override
   Widget build(BuildContext context) {
     return Dismissible(
-      key: ValueKey(product.Product_Id),
+      key: ValueKey(widget.product.Product_Id),
       background: Container(
           color: Colors.redAccent.shade700,
           alignment: Alignment.centerRight,
@@ -37,26 +50,37 @@ class CartItem extends StatelessWidget {
           )),
       direction: DismissDirection.endToStart,
       confirmDismiss: (direction) async {
-        onDismissed();
+         widget.onDismissed();
         return null;
       },
-      onDismissed: (direction) {
-        Provider.of<CartProvider>(context, listen: false)
-            .removeSingleItem(product.Product_Id);
+      onDismissed: (direction) async {
+        // await reff
+        //     .child('OrderDetails')
+        //     .child(widget.product.Product_Id)
+        //     .remove();
+        FirebaseDatabase.instance.ref().child('OrderDetails').child(widget.product.Product_Id).remove();
+        // Provider.of<CartProvider>(context, listen: false)
+        //     .removeSingleItem(product.Product_Id);
+
       },
       child: Card(
+        color: Colors.cyan.shade50,
         margin: const EdgeInsets.symmetric(
-          horizontal: 10,
+          horizontal: 1,
           vertical: 5,
         ),
         child: Padding(
           padding: const EdgeInsets.all(8),
           child: ListTile(
-            leading:
-                CircleAvatar(backgroundImage: NetworkImage(product.image_url)),
-            title: Text(product.Product_name),
-            subtitle: Text('Total: \$${(product.Product_price * quantity)}'),
-            trailing: Text('$quantity X'),
+            leading: CircleAvatar(
+              maxRadius: 25,
+                backgroundImage:
+                NetworkImage(widget.product.image_url)),
+            title: Text(widget.product.Product_name,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w800),),
+            subtitle: Text(
+                'Price: \$${(widget.product.Product_price)} \n\n'
+                    'Total: \$${(widget.product.Product_price)*(widget.product.quantity)}',style:TextStyle( fontSize: 15, fontWeight: FontWeight.w500)),
+            trailing: Text('${widget.product.quantity} X'),
           ),
         ),
       ),

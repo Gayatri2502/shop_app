@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shop_app/providers/product_provider.dart';
 import 'package:shop_app/providers/server_end_product_view.dart';
-import 'package:shop_app/screens/order_screen.dart';
+import 'package:shop_app/screens/shopping_cart_screen .dart';
 import 'package:shop_app/screens/sideBar.dart';
 
+import '../providers/app_states.dart';
 import '../widgets/product_grid.dart';
 import 'Profile_Page.dart';
 
@@ -16,6 +17,8 @@ enum option {
 }
 
 class Frontend_View_ofproduct extends StatefulWidget {
+  const Frontend_View_ofproduct({Key? key}) : super(key: key);
+
   @override
   State<Frontend_View_ofproduct> createState() =>
       _Frontend_View_ofproductState();
@@ -24,16 +27,16 @@ class Frontend_View_ofproduct extends StatefulWidget {
 class _Frontend_View_ofproductState extends State<Frontend_View_ofproduct> {
   @override
   Widget build(BuildContext context) {
-    List<Product> shoppingCartItems =
-        Provider.of<ProductProvider>(context).shoppingCartItems;
+    List<Product> shoppingCartGridItems =
+        Provider.of<ProductProvider>(context).shoppingCartGridItems;
 
     return Scaffold(
-        drawer: NavBar(),
+        drawer: const NavBar(),
         appBar: AppBar(
           actions: [
             Badge(
               badgeContent: Text(
-                shoppingCartItems.length.toString(),
+                shoppingCartGridItems.length.toString(),
                 style: const TextStyle(
                     color: Colors.white, fontWeight: FontWeight.bold),
               ),
@@ -42,7 +45,7 @@ class _Frontend_View_ofproductState extends State<Frontend_View_ofproduct> {
                 onPressed: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) {
-                    return OrderPage();
+                    return  OrderPage();
                   }));
                 },
                 icon: const Icon(Icons.shopping_cart),
@@ -54,12 +57,11 @@ class _Frontend_View_ofproductState extends State<Frontend_View_ofproduct> {
                 onPressed: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) {
-                    return ProfileScreen();
+                    return const ProfileScreen();
                   }));
                 },
                 icon: const Icon(Icons.person)),
             PopupMenuButton(
-                color: Colors.white60,
                 icon: const Icon(Icons.more_vert),
                 itemBuilder: (_) => [
                       PopupMenuItem(
@@ -68,16 +70,32 @@ class _Frontend_View_ofproductState extends State<Frontend_View_ofproduct> {
                           Provider.of<ProductProvider>(context, listen: false)
                               .toggleShowFavorite(true);
                         },
-                        child: Text('Your Wishllist',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w700)),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.settings,
+                              color: Colors.black,
+                            ),
+                            Text('Settings',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w700)),
+                          ],
+                        ),
                       ),
                       PopupMenuItem(
                         value: 2,
-                        child: Text(
-                          'Show All',
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w700),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.favorite,
+                              color: Colors.black,
+                            ),
+                            Text(
+                              'Wish List',
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.w700),
+                            ),
+                          ],
                         ),
                         onTap: () {
                           Provider.of<ProductProvider>(context, listen: false)
@@ -86,54 +104,94 @@ class _Frontend_View_ofproductState extends State<Frontend_View_ofproduct> {
                       ),
                       PopupMenuItem(
                         value: 3,
-                        child: Text('Your Orders',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w700)),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.add_shopping_cart_sharp,
+                              color: Colors.black,
+                            ),
+                            Text('Your Orders',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w700)),
+                          ],
+                        ),
                         onTap: () {
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (context) {
-                            return OrderPage();
-                          }));
+                            return  OrderPage( );
+                          }
+                          ));
                         },
+
                       ),
                       PopupMenuItem(
                         value: 4,
-                        child: Text('Manage Account',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w700)),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.manage_history_sharp,
+                              color: Colors.black,
+                            ),
+                            Text('Manage Account',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w700)),
+                          ],
+                        ),
                       ),
                       PopupMenuItem(
                         value: 5,
-                        child: Text('Contact Us',
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.w700)),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.quick_contacts_dialer,
+                              color: Colors.black,
+                            ),
+                            Text('Contact Us',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w700)),
+                          ],
+                        ),
+                      ),
+                      PopupMenuItem(
+                        value: 6,
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.logout,
+                              color: Colors.black,
+                            ),
+                            Text('LogOut',
+                                style: TextStyle(
+                                    fontSize: 18, fontWeight: FontWeight.w700)),
+                          ],
+                        ),
                       )
                     ]),
           ],
           leading: IconButton(
-            icon: Icon(Icons.menu),
+            icon: const Icon(Icons.menu),
             iconSize: 40,
             onPressed: () {
               Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-                return NavBar();
+                return const NavBar();
               }));
             },
           ),
           iconTheme: const IconThemeData(color: Colors.white60),
           actionsIconTheme: IconThemeData(color: Colors.pink.shade50),
-          backgroundColor: Colors.black,
+          backgroundColor: Colors.blue.shade900,
           title: const Text('Evyan Store ∞'),
         ),
         body: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Colors.black,
-                Colors.brown,
-              ],
-            )),
-            child: ProductGrid()));
+          color: Colors.black12,
+            // decoration: const BoxDecoration(
+            //     gradient: LinearGradient(
+            //   begin: Alignment.topRight,
+            //   end: Alignment.bottomLeft,
+            //   colors: [
+            //     Colors.black,
+            //     Colors.brown,]
+            // )),
+            child: ProductGrid(allItems: shoppingCartGridItems,)));
   }
 }

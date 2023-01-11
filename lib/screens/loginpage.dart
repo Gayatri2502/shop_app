@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> {
     final loginButton = Material(
       elevation: 5.0,
       borderRadius: BorderRadius.circular(30.0),
-      color: Colors.black54,
+      color: Colors.indigo.shade900,
       child: MaterialButton(
         minWidth: MediaQuery.of(context).size.width,
         padding: const EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
@@ -62,12 +62,7 @@ class _LoginPageState extends State<LoginPage> {
     );
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white12,
-        leading: const IconButton(
-          icon: Icon(Icons.view_headline_sharp),
-          onPressed: null,
-          iconSize: 50,
-        ),
+        backgroundColor: Colors.indigo.shade900,
         //iconTheme: const IconThemeData(color: Colors.white),
         actions: [
           ElevatedButton.icon(
@@ -102,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
                   height: 100,
                   child: Center(
                     child: Text('Evyan Shop',
-                        style: TextStyle(color: Colors.white, fontSize: 40)),
+                        style: TextStyle(color: Colors.black,fontWeight: FontWeight.w900, fontSize: 40)),
                   ),
                 ),
               ),
